@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab 实现</title>
+	<style>
+	
+	* {
+		margin: 0;
+		padding: 0;
+		font: 14px "Microsoft YaHei";
+	}
+
+	.container {
+		width: 572px;
+		height: 150px;
+		margin:10px;
+		border: 1px solid #999;
+	}
+
+	.container ul {
+		list-style: none;
+		display: flex;
+		text-align: center;
+
+	}
+
+	.container ul li {
+		display: inline-block;
+		height: 30px;
+		line-height: 30px;
+		border: 1px solid #cecece;
+		flex: 1;
+		text-align: center;
+		background-color: #f1f1f1;
+
+	}
+
+	.container ul li.active {
+		background-color: #fff;
+		border-bottom: none;
+	}
+
+	.container ul li:first-child {
+		border-left: none;
+	}
+
+	.container ul li:last-child {
+		border-right: none;
+	}
+
+	.content {
+		padding: 20px;
+		background-color: #fff;
+	}
+		
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="head">
+		<ul>
+			<li class="active">课程</li>
+			<li>学习计划</li>
+			<li>技能图谱</li>
+		</ul>
+	</div>
+	<div class="content">
+		 课程内容		
+	</div>
+</div>
+	
+</body>
+</html>
+
+<!--
+我个人认为很多人将最外层的包围框设置为width：574px是不合理的。题目中要求总框574px（含边框），而左右边框的宽度分别为1px，所以最外层的包围框的宽度应该设置为width:572px。
+-->

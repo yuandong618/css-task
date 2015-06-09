@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Responsive Layout</title>
+<style>
+
+.side {
+float: left;
+width:200px;
+height:100px;
+background-color: #ff0000;
+ 
+}
+ 
+.main {
+margin-left: 210px;
+height:100px;
+background-color: #0000ff;
+}
+ 
+.clearfix:after {
+content: ".";
+display: block;
+height: 0;
+visibility: hidden;
+clear: both;
+}
+ 
+.clear {
+*zoom:1;
+}
+ 
+</style>
+</head>
+<body>
+<div class="parent clearfix">
+<div class="side">侧栏</div>
+<div class="main">主栏</div>
+</div>
+ 
+ 
+</body>
+</html>

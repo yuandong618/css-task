@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+		* {
+			margin:0;
+			padding: 0;
+		}
+
+		.mask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;			
+			z-index: 999;
+		}
+
+		.popup {
+			position: fixed; /*固定在mask上*/
+			top: 50%;
+			left: 50%;
+			width: 300px;
+			height: auto;
+			border: 1px solid #cccccc;
+			border-radius: 5px;
+			transform: translate(-50%, -50%);
+		
+		}
+
+		.head {
+			position: relative;
+			height: 39px;
+			padding: 0 20px;
+			font: 14px "Microsoft Yahei";
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			background-color: #eeeeee;
+			line-height: 40px;
+
+
+		}
+
+		.close {
+			position: absolute;
+			display: block;
+			width: 10px;
+			height: 10px;
+			top: 10px;
+			right: 10px;
+			background: url(../x.png) no-repeat;			
+			background-color: #000;			
+			cursor: pointer;		
+		}
+
+
+		.content {
+			font: 12px "宋体";
+			background-color: #fff;
+
+		}
+
+		.content p {
+			padding: 20px;
+		}
+
+		.button {
+			width: 80px;
+			height: 30px;
+			margin:20px auto;
+			background-color: blue;
+			color: #fff;
+			line-height: 30px;
+			text-align: center;
+			border-radius: 5px;
+			cursor: pointer;
+
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="mask">
+		<div class="popup">
+			<div class="head">
+				标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏标题栏
+				<a href="#" class="close"></a>
+			</div>
+			<div class="content">
+				<p>
+				中国共产党的诞生是中国革命发展的客观需要，是马克思主义同中国工人运动相结合的产物。1840年鸦片战争以后，国际资本主义、帝国主义的势力侵入中国，中国的社会结构由封建社会逐步演变为半殖民地半封建社会。从鸦片战争到五四运动，中国人民为了反对帝国主义和封建统治进行了英勇不屈的斗争，其中主要的是太平天国农民战争和资产阶级领导的辛亥革命，但都相继失败了。历史证明，中国的农民阶级和民族资产阶级由于他们的历史局限性和阶级局限性，都不能领导民主革命取得胜利。
+			  </p>
+				<div class="button">确定</div>
+			</div>
+			
+		</div>
+		
+	</div>
+</body>
+</html>
