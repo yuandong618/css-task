@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录demo</title>
+	<style>
+
+	* {
+		margin: 0;
+		padding:0;
+	}
+
+	body,input,legend,button {
+		font: 16px "微软雅黑";
+	}
+
+	.m-form {
+		margin: 150px auto;
+		width: 325px;
+		border: 1px solid #ddd;
+	}
+
+
+	.m-form fieldset {
+		border: none;
+	}
+
+	.m-form legend {
+		display: block;
+		width: 100%;
+		line-height: 30px;
+		text-indent: 1em;
+		color: #fff;
+		background-color: #2d2d2d;
+	}
+
+
+	.m-form label {
+		display: inline-block;
+		width: 70px;
+		text-align: right;
+	}
+
+
+	.wrap {
+		padding:20px;
+	}
+
+	.wrap div {
+		margin: 20px;
+	}
+
+	.msg {
+		display: none;
+		margin: 5px;
+		text-align: center;
+
+	}
+
+	.tip {
+		padding-left:6em;
+		font-size:12px;
+		color:#C0C0C0;
+	}
+	
+	.u-txt {
+		width: 160px;
+		padding:3px;
+		border:1px solid #aaa;
+	}
+	
+	.button {
+		width: 100%;
+		height: 30px;
+		color: #fff;
+		border: 1px solid #ddd;
+		cursor: pointer;
+		background-color:#2d7dca; 
+	}
+
+	.msg-err {
+		display: block;
+		color:#FF0000;
+
+	}
+
+	.msg-suc {
+		display:block;
+		color:#158226;
+	}
+
+	.input-err {
+		border-color: #f00;
+		background-color: #FFE7E7;
+	}
+
+	.btn-disabled {
+		cursor: default;
+		background-color: #ddd;
+	}
+
+	</style>
+</head>
+<body>
+	<form action="./login" class="m-form" name="loginForm" autocomplete="off" target="result">		
+		<fieldset>		
+			<legend>手机号码登录</legend>
+			<div class="wrap">
+			<div class="msg" id="message"></div>
+			<div>
+				<label for="telephone">手机号：</label>
+				<input type="tel" name="telephone" id="telephone" class="u-txt" maxlength="11" required pattern="^0?(1)[0-9]{10}$">
+				<br>
+				<span class="tip">11位数字手机号码</span>
+			</div>
+			<div>
+				<label for="">密 码：</label>
+				<input type="password" name="password" id="password" class="u-txt">
+				<br>
+				<span class="tip">至少六位，同时包含数字和字母</span>
+				
+			</div>
+			<div><button class="button" name="loginBtn">登 录</button></div>
+			</div>
+
+		</fieldset>
+	</form>
+	<iframe name="result" id="result" style="display:none;" ></iframe>
+	<script>
+	(function (){
+		var form=document.forms.loginForm;
+		var elem=document.getElementById("message");
+		var frame=document.getElementById("result");
+
+		function md5(msg){
+			//这里只是模拟md5加密，实际环境中需要调用响应的js库的加密函数
+			return msg;			
+		}
+
+
+		function showMessage(msg,cla){
+			if(!cla){
+				elem.innerHTML="";
+				elem.classList.remove("msg-err");
+				elem.classList.remove("msg-suc");
+			} else {
+				elem.innerHTML=msg;
+				elem.classList.add(cla);
+			}
+		}
+
+		//针对input框输入invalid的时候的操作
+		function invalidInput(node,msg){
+			showMessage(msg,"msg-err");
+			node.classList.add("input-err");
+			node.focus();
+
+		}
+
+		function clearInvalid(node){
+			showMessage();
+			node.classList.remove("input-err");
+		}
+
+
+		function disableSubmit(flag){
+			form.loginBtn.disabled=!!flag;
+			var method=!flag?"remove":"add";
+			form.loginBtn.classList[method]("btn-disabled");
+		}
+
+	
+
+		form.telephone.addEventListener('invalid',function (event){
+			event.preventDefault();
+			invalidInput(form.telephone,"请输入正确的手机号");
+
+		});
+
+		form.addEventListener("input",function(event){			
+			clearInvalid(event.target);
+			disableSubmit(false);
+
+
+		});
+
+		form.addEventListener("submit",function (event){
+
+			//验证密码
+			var passwordElem=form.password;
+			var passwordValue=passwordElem.value;
+			var msg='';
+			if(passwordValue.length<6){
+				msg='密码长度必须大于6位';
+			}
+
+			if(!/\d/.test(passwordValue)||!/[a-z]/i.test(passwordValue)){
+				msg='密码必须包含数字和字母';
+			}
+
+			//密码验证不通过
+			if(!!msg){
+				event.preventDefault();
+				invalidInput(passwordElem,msg);
+				return;
+			}
+
+			passwordElem.value=md5(passwordValue);
+			disableSubmit(true);
+
+		});
+		
+		frame.addEventListener("load",function (event){
+			try{
+				var result=JSON.parse(frame.contentWindow.document.body.textContent);
+				disableSubmit(false);
+				if(result.code==200){
+					showMessage("登录成功","msg-suc");
+					form.reset();
+				}
+
+			}
+			catch(ex){
+				//
+
+			}
+
+		});
+	}());
+
+	</script>
+
+	
+</body>
+</html>

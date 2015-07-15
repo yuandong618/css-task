@@ -55,5 +55,24 @@
 ```
 要求如效果图中标注，幻灯（slide）宽200px，高100px，指示器（pointer）在右下角，距离右边10px距离下边10px，指示器中的三个圆直径为10px，背景为黑色，间距为5px，当前选中项（current）为白色背景，请完成CSS，需要兼容低版本IE。
 
-[task3-demo](http://yuandong.im/css-demo/task3-slide.html)# Task Description
+[task3-demo](http://yuandong.im/css-demo/task3-slide.html)
+
+
+###task4-实现一个登录框
+
+如下图所示:
+
+![登录框](http://7xj8b6.com1.z0.glb.clouddn.com/login-form.png)
+
+现需求如下：
+
+- 手机号不能为空，为以1起始的11位数字。
+- 密码为大于6位字符。
+- 输入框失去焦点时做输入验证。
+- 输入框验证失败时，添加invalid样式
+- 输入框获取焦点时，去除invalid样式。
+- 点击登录按钮，做输入框验证，验证通过后，先禁用按钮再提交表单。
+按钮禁用时，添加disabled样式(背景色为"#ddd", 光标为"default")。
+
+[task4-demo](http://yuandong.im/css-demo/task4-login-form.html)
 
